@@ -1,3 +1,24 @@
 _schema-version: "3.2"
 ID: business-partner
 version: 0.0.1
+modules:
+  - name: business-partner-srv
+    type: nodejs
+    path: gen/srv
+    requires:
+      - name: business-partner-db
+
+  - name: business-partner-db-deployer
+    type: hdb
+    path: gen/db
+    parameters:
+      buildpack: nodejs_buildpack
+    requires:
+      - name: business-partner-db
+
+resources:
+  - name: business-partner-db
+    type: com.sap.xs.hdi-container
+    parameters:
+      service: hana
+      service-plan: hdi-shared
