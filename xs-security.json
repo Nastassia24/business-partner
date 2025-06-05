@@ -1,0 +1,34 @@
+{
+  "xsappname": "business-partner",
+  "tenant-mode": "dedicated",
+  "description": "Security profile of called application",
+  "scopes": [
+    {
+      "name": "uaa.user",
+      "description": "UAA"
+    }
+  ],
+  "role-templates": [
+    {
+      "name": "Token_Exchange",
+      "description": "UAA",
+      "scope-references": [
+        "uaa.user"
+      ]
+    }
+  ],
+  "attributes": [],
+  "oauth2-configuration": {
+    "redirect-uris": [
+      "https://909bac75trial.authentication.us10.hana.ondemand.com/oauth/authorize",
+      "https://port5000-workspaces-ws-s9v49.us10.trial.applicationstudio.cloud.sap/login/callback",
+      "https://**.hana.ondemand.com/login/callback",
+      "https://**.applicationstudio.cloud.sap/login/callback",
+      "https://************-risk-management.cfapps.us10-001.hana.ondemand.com",
+      "https://*.cfapps.us10-001.hana.ondemand.com/**",
+      "*",
+      "https://f17611e0trial.authentication.us10.hana.ondemand.com/oauth/*",
+      "https://*.hana.ondemand.com/**"
+    ]
+  }
+}

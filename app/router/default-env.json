@@ -1,0 +1,12 @@
+{
+  "destinations": [
+    {
+      "name": "srv-api",
+      "url": "http://localhost:4004",
+      "forwardAuthToken": true
+    }
+  ],
+  "VCAP_SERVICES": {
+    "xsuaa":[{"name":"business-partner-xsuaa-service","instance_name":"business-partner-xsuaa-service","label":"xsuaa","tags":["xsuaa","endpoint:https://api.cf.us10-001.hana.ondemand.com","org:909bac75trial","space:dev"],"plan":"application","credentials":{"apiurl":"https://api.authentication.us10.hana.ondemand.com","clientid":"sb-business-partner!t441453","clientsecret":"b89f8b94-3220-4b5f-b77a-7b2ddd7a7886$xldTaVMy871RocSb_uq-I8vsWW3fDiZiUaxMepnqv7Q=","credential-type":"binding-secret","identityzone":"909bac75trial","identityzoneid":"bf3426fb-e9c1-4b51-96f6-0d18fdc259d6","sburl":"https://internal-xsuaa.authentication.us10.hana.ondemand.com","serviceInstanceId":"c62701d4-be06-45d9-8fdf-556ddb60214b","service_key_name":"key","subaccountid":"bf3426fb-e9c1-4b51-96f6-0d18fdc259d6","tenantid":"bf3426fb-e9c1-4b51-96f6-0d18fdc259d6","tenantmode":"dedicated","uaadomain":"authentication.us10.hana.ondemand.com","url":"https://909bac75trial.authentication.us10.hana.ondemand.com","verificationkey":"-----BEGIN PUBLIC KEY-----\nMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAmpPdypM01ML3ApXSt83w\nhpOFXA37YgVMxnLHZPB/DxtacCJFtgCkDHIZyaJjwqq7nsyvG0vezl/uuhCmgOz5\nvy6GSJ2Wfqh8OKQ3PZP87HRUDp+GRPiGUNIZOq9F54w1/1KMwvUimfjLifTLaWHf\ngFgxwRA+R7SgRNAgXe5r29R2CEL1W4BB3F/8WXCfqEntg4qOXG5xc9avP7vxLBTq\npzNDBy5oDdJvMW3aJjBwExjfxXVUvVU6o63uIxJGh/FH01nyZU4mwCRWj+fIXwe3\nGUhiLsFBLMB4XvQhKPAjqjlucelnIPU63EoCeLLXnRFWaf6rlhi/9S3SvJelCwbi\nMQIDAQAB\n-----END PUBLIC KEY-----","xsappname":"business-partner!t441453","zoneid":"bf3426fb-e9c1-4b51-96f6-0d18fdc259d6"}}]
+  }
+}

@@ -1586,7 +1586,7 @@ entity API_BUSINESS_PARTNER.A_BuPaIndustry {
 };
 
 @cds.external : true
-@cds.persistence.skip : true
+
 @sap.deletable : 'false'
 @sap.content.version : '1'
 @sap.label : 'Business Partner'

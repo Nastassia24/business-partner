@@ -1,20 +1,52 @@
 _schema-version: "3.2"
 ID: business-partner
 version: 0.0.1
+build-parameters:
+  before-all:
+  - builder: custom
+    commands:
+    - npm ci
+    - npx cds build --production
+
 modules:
   - name: business-partner-srv
     type: nodejs
     path: gen/srv
     requires:
       - name: business-partner-db
-
+      - name: uaa_business-partner
+    provides:
+      - name: srv-api # required by consumers of CAP services (e.g. approuter)
+        properties:
+          srv-url: ${default-url}
   - name: business-partner-db-deployer
     type: hdb
     path: gen/db
-    parameters:
-      buildpack: nodejs_buildpack
     requires:
       - name: business-partner-db
+    parameters:
+      buildpack: nodejs_buildpack
+
+  - name: business-partner
+    type: approuter.nodejs
+    path: app/router
+    parameters:
+      keep-existing-routes: true
+      disk-quota: 256M
+      memory: 256M
+    requires:
+      - name: srv-api
+        group: destinations
+        properties:
+          name: srv-api # must be used in xs-app.json as well
+          url: ~{srv-url}
+          forwardAuthToken: true
+      - name: uaa_business-partner
+    provides:
+      - name: app-api
+        properties:
+          app-protocol: ${protocol}
+          app-uri: ${default-uri}
 
 resources:
   - name: business-partner-db
@@ -22,3 +54,22 @@ resources:
     parameters:
       service: hana
       service-plan: hdi-shared
+  - name: business-partner-destination-service
+    type: org.cloudfoundry.managed-service
+    parameters:
+      config:
+        HTML5Runtime_enabled: true
+        version: 1.0.0
+      service: destination
+      service-name: business-partner_destination-service
+      service-plan: lite
+  - name: uaa_business-partner
+    type: org.cloudfoundry.managed-service
+    parameters:
+      path: ./xs-security.json
+      service: xsuaa
+      service-name: business-partner-xsuaa-service
+      service-plan: application
+      config:
+        xsappname: business-partner-${org}-${space}
+        tenant-mode: dedicated
